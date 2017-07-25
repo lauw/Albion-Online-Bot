@@ -1,0 +1,58 @@
+﻿<#@ include file="..\Global.ttinclude" #>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+
+using UnityEngine;
+
+namespace Merlin.API
+{
+	public class Landscape
+	{
+		#region Static
+
+		public static Landscape Instance
+		{
+			get
+			{
+				var internalLandscape = <#= internalWorldType.Name #>.<#= internalWorld_getInstance.Name #>().<#= internalLandscape_getInstance.Name #>();
+
+				if (internalLandscape != null)
+					return new Landscape(internalLandscape);
+
+				return default(Landscape);
+			}
+		} 
+
+		#endregion
+
+		#region Fields
+
+		#endregion
+
+		#region Properties and Events
+
+		private <#= internalLandscapeType.Name #> _landscape;
+
+		#endregion
+
+		#region Constructors and Cleanup
+
+		protected Landscape(<#= internalLandscapeType.Name #> landscape)
+		{
+			_landscape = landscape;
+		}
+
+		#endregion
+
+		#region Methods
+
+		public float GetLandscapeHeight(ahl position)
+		{
+			return _landscape.p(position);
+		}
+
+		#endregion
+	}
+}

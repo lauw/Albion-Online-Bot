@@ -1,0 +1,108 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Linq" #>
+<#@ assembly name="$(SolutionDir)\Dependencies\Albion.Common.dll" #>
+<#@ assembly name="$(SolutionDir)\Dependencies\Albion.PhotonClient.dll" #>
+<#@ assembly name="$(SolutionDir)\Dependencies\Assembly-CSharp.dll" #>
+<#@ assembly name="$(SolutionDir)\Dependencies\Photon3Unity3D.dll" #>
+<#@ assembly name="$(SolutionDir)\Dependencies\UnityEngine.dll" #>
+<#@ assembly name="$(SolutionDir)\Dependencies\UnityEngine.UI.dll" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Reflection" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#
+	var publicInstanceFlags = BindingFlags.Public | BindingFlags.Instance;
+	var privateInstanceFlags = BindingFlags.NonPublic | BindingFlags.Instance;
+	var staticPublicFlags = BindingFlags.Public | BindingFlags.Static;
+
+	MethodInfo GetStaticMethod(Type type, Func<MethodInfo, bool> selector)
+	{
+		return type.GetMethods(BindingFlags.Static | BindingFlags.Public).FirstOrDefault(selector);
+	}
+
+	IEnumerable<MethodInfo> GetMethods(Type type, Func<MethodInfo, bool> selector)
+	{
+		return type.GetMethods(publicInstanceFlags).Where(selector);
+	}
+
+	MethodInfo GetMethod(Type type, string name)
+	{
+		return type.GetMethod(name);
+	}
+
+	MethodInfo GetMethodWhere(Type type, Func<MethodInfo, bool> selector)
+	{
+		return type.GetMethods(publicInstanceFlags).FirstOrDefault(selector);
+	}
+
+	MethodInfo GetPrivateMethod(Type type, string name)
+	{
+		return type.GetMethod(name, privateInstanceFlags);
+	}
+
+	PropertyInfo GetProperty(Type type, string name)
+	{
+		return type.GetProperty(name);
+	}
+
+	FieldInfo GetField(Type type, string name)
+	{
+		return type.GetField(name, privateInstanceFlags);
+	}
+
+	/* Client */
+	var internalClientType = typeof(a3d);
+	var internalClient_getInstance = GetStaticMethod(internalClientType, m => m.ReturnType.IsEquivalentTo(internalClientType));
+	var internalClient_getState = GetMethod(internalClientType, "w");
+	var internalClient_getLocalPlayerCharacterView = GetMethod(internalClientType, "v");
+	var internalClient_getSimulationObjectViewByEntity = GetMethods(internalClientType, (m) =>
+	{
+		if (m.Name != "a" && m.ReturnType != typeof(SimulationObjectView))
+			return false;
+
+		return true;
+	}).FirstOrDefault();
+
+	/* World */
+	var internalWorldType = typeof(ajb);
+	var internalWorld_getInstance = GetStaticMethod(internalWorldType, m => m.ReturnType.IsEquivalentTo(internalWorldType));
+	var internalWorld_getEntities = GetMethod(internalWorldType, "ab");
+	var internalWorld_getEntitiesOfType = GetMethod(internalWorldType, "ap");
+
+	var internalClusterType = GetMethod(typeof(WorldMap.Worldmap), "IsWorldmapCluster").GetParameters()[0].ParameterType;
+	var internalClusterExitType = typeof(aig);
+	var internalWorld_getCurrentCluster = GetMethodWhere(internalWorldType, m => m.ReturnType.IsEquivalentTo(internalClusterType));
+
+	
+
+	/* Landscape */
+	var internalLandscapeType = typeof(amc);
+	var internalLandscape_getInstance = GetMethodWhere(internalWorldType, m => m.ReturnType.IsEquivalentTo(internalLandscapeType));
+
+	var internalCollisionType = typeof(aca);
+	var internalCollision_getInstance = GetMethodWhere(internalWorldType, m => m.ReturnType.IsEquivalentTo(internalCollisionType));
+
+	/* Internal Entities */
+	var internalEntityType = GetProperty(typeof(SimulationObjectView), "SimulationObject").PropertyType;
+
+	var internalFightingType = GetProperty(typeof(FightingObjectView), "FightingObject").PropertyType;
+	var internalFightingType_GetAttackerId = GetMethod(internalFightingType, "wb"); 
+
+	var internalMobType = GetProperty(typeof(MobView), "Mob").PropertyType;
+
+	var internalLocalPlayerCharacterType = GetProperty(typeof(LocalPlayerCharacterView), "LocalPlayerCharacter").PropertyType;
+
+	var internalHarvestType = typeof(HarvestableObjectView).GetProperty("HarvestableObject").PropertyType;
+
+	var internalitemType = typeof(apu);
+
+	/* Events */
+	var internalEventHandlerType = GetField(internalFightingType, "bl").FieldType.GetGenericArguments()[1];
+
+	/* Views */
+	var internalLocalPlayerCharacterViewType = typeof(LocalPlayerCharacterView).GetProperty("LocalPlayerCharacter").PropertyType;
+
+	/* */
+	var internalSpellType = typeof(ab0);
+	var internalSpellConfigurationType = typeof(gt);
+#>

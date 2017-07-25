@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DF9941B0-4554-4038-8D80-9FA1E55FBD6C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Merlin</RootNamespace>
+    <AssemblyName>Merlin</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Release\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Albion.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Albion.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Albion.PhotonClient, Version=1.0.6284.40808, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Albion.PhotonClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Photon3Unity3D">
+      <HintPath>..\Dependencies\Photon3Unity3D.dll</HintPath>
+    </Reference>
+    <Reference Include="Stateless, Version=2.4.0.1, Culture=neutral, PublicKeyToken=93038f0927583c9a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Program Files (x86)\NuGet\MonoStateless.2.5.29\lib\Stateless.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml">
+      <HintPath>..\..\..\..\Program Files (x86)\Albion Online\game\Albion-Online_Data\Managed\System.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\Dependencies\UnityEngine.UI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="API\Events\CastSpellEventHandler.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CastSpellEventHandler.tt</DependentUpon>
+    </Compile>
+    <Compile Include="API\Game\Client.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Client.tt</DependentUpon>
+    </Compile>
+    <Compile Include="API\Game\Clusters.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Clusters.tt</DependentUpon>
+    </Compile>
+    <Compile Include="API\Game\Collision.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Collision.tt</DependentUpon>
+    </Compile>
+    <Compile Include="API\Game\Landscape.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Landscape.tt</DependentUpon>
+    </Compile>
+    <Compile Include="API\Game\Spells.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Spells.tt</DependentUpon>
+    </Compile>
+    <Compile Include="API\Game\World.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>World.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Core.cs" />
+    <Compile Include="Extensions\Views\FightingObjectView.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FightingObjectView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\Views\HarvestableObjectView.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HarvestableObjectView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\Views\LocalPlayerCharacterView.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocalPlayerCharacterView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\Views\MountObjectView.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MountObjectView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\Views\SimulationObjectView.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SimulationObjectView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pathing\AStar\AStarMap.cs" />
+    <Compile Include="Pathing\AStar\AStarNode.cs" />
+    <Compile Include="Pathing\AStar\AStarPathfinder.cs" />
+    <Compile Include="Pathing\Cluster\ClusterPathfinder.cs" />
+    <Compile Include="Pathing\BaseGraphSearchMap.cs" />
+    <Compile Include="Pathing\BaseGraphSearchNode.cs" />
+    <Compile Include="Pathing\BaseGraphSearchPathfinder.cs" />
+    <Compile Include="Pathing\BasePathfinder.cs" />
+    <Compile Include="Pathing\Dijkstra\BaseDijkstraMap.cs" />
+    <Compile Include="Pathing\Dijkstra\DijkstraMap.cs" />
+    <Compile Include="Pathing\Dijkstra\DijkstraNode.cs" />
+    <Compile Include="Pathing\Dijkstra\DijkstraPathfinder.cs" />
+    <Compile Include="Pathing\Helpers\BlockMethodType.cs" />
+    <Compile Include="Pathing\Helpers\DirectionHelper.cs" />
+    <Compile Include="Pathing\Helpers\DirectionType.cs" />
+    <Compile Include="Pathing\Helpers\EllipseRasterizer.cs" />
+    <Compile Include="Pathing\Helpers\HeuristicHelper.cs" />
+    <Compile Include="Pathing\Helpers\LineRasterizer.cs" />
+    <Compile Include="Pathing\Helpers\PathDelegates.cs" />
+    <Compile Include="Pathing\Helpers\PriorityQueue.cs" />
+    <Compile Include="Pathing\IPathfinder.cs" />
+    <Compile Include="Pathing\Worldmap\WorldmapMap.cs" />
+    <Compile Include="Pathing\Worldmap\WorldmapNode.cs" />
+    <Compile Include="Pathing\Worldmap\WorldmapPathfinder.cs" />
+    <Compile Include="Profile.cs" />
+    <Compile Include="Profiles\Gatherer\Gatherer.Bank.cs" />
+    <Compile Include="Profiles\Gatherer\Gatherer.Combat.cs" />
+    <Compile Include="Profiles\Gatherer\Gatherer.cs" />
+    <Compile Include="Profiles\Gatherer\Gatherer.Harvest.cs" />
+    <Compile Include="Profiles\Gatherer\Gatherer.Search.cs" />
+    <Compile Include="Profiles\ClusterPathingRequest.cs" />
+    <Compile Include="Profiles\WorldPathingRequest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="API\Global.ttinclude" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="API\Events\CastSpellEventHandler.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CastSpellEventHandler.cs</LastGenOutput>
+    </Content>
+    <Content Include="API\Game\Client.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Client.cs</LastGenOutput>
+    </Content>
+    <Content Include="API\Game\Clusters.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Clusters.cs</LastGenOutput>
+    </Content>
+    <Content Include="API\Game\Collision.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Collision.cs</LastGenOutput>
+    </Content>
+    <Content Include="API\Game\Landscape.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Landscape.cs</LastGenOutput>
+    </Content>
+    <Content Include="API\Game\Spells.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Spells.cs</LastGenOutput>
+    </Content>
+    <Content Include="API\Game\World.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>World.cs</LastGenOutput>
+    </Content>
+    <Content Include="Extensions\Views\FightingObjectView.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>FightingObjectView.cs</LastGenOutput>
+    </Content>
+    <Content Include="Extensions\Views\HarvestableObjectView.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>HarvestableObjectView.cs</LastGenOutput>
+    </Content>
+    <Content Include="Extensions\Views\LocalPlayerCharacterView.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LocalPlayerCharacterView.cs</LastGenOutput>
+    </Content>
+    <Content Include="Extensions\Views\MountObjectView.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MountObjectView.cs</LastGenOutput>
+    </Content>
+    <Content Include="Extensions\Views\SimulationObjectView.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SimulationObjectView.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
