@@ -22,7 +22,6 @@ Have added something? Problems? Push issues or pull requests
  * Add a outside game GUI.
  * Create on gui a section to writed and load Profiles.
 
-
 ### Discord - Albion Online development
 
 Join us! :+1:
