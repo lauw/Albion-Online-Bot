@@ -86,7 +86,7 @@
 	var internalEntityType = GetProperty(typeof(SimulationObjectView), "SimulationObject").PropertyType;
 
 	var internalFightingType = GetProperty(typeof(FightingObjectView), "FightingObject").PropertyType;
-	var internalFightingType_GetAttackerId = GetMethod(internalFightingType, "wb"); 
+	var internalFightingType_GetAttackerId = GetMethod(internalFightingType, "v8"); 
 
 	var internalMobType = GetProperty(typeof(MobView), "Mob").PropertyType;
 

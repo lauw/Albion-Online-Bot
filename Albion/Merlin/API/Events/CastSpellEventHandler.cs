@@ -1,4 +1,12 @@
-﻿using System;
+﻿
+
+
+
+
+
+
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -15,7 +23,7 @@ namespace Merlin.API
 
 		#region Fields
 
-		private aso _internalHandler;
+		private auy _internalHandler;
 
 		#endregion
 
@@ -25,7 +33,7 @@ namespace Merlin.API
 
 		#region Constructors and Cleanup
 		
-		public CastSpellEventHandler(aso internalHandler)
+		public CastSpellEventHandler(auy internalHandler)
 		{
 			_internalHandler = internalHandler;
 		}

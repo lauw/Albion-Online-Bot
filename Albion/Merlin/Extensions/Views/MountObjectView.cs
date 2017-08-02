@@ -1,4 +1,12 @@
-﻿using System;
+﻿
+
+
+
+
+
+
+
+using System;
 using System.Collections.Generic;
 
 using UnityEngine;
@@ -10,9 +18,9 @@ namespace Merlin
 		public static bool InRange(this MountObjectView mount, Vector3 position)
 		{
 			var mountPosition = mount.transform.position;
-			var distance = (position - mountPosition).sqrMagnitude;
+			var distance = (position - mountPosition).magnitude;
 
-			var desiredRange = mount.MountObject.sd().ef();
+			var desiredRange = mount.MountObject.sa().eg();
 
 			if (distance > desiredRange)
 				return false;

@@ -1,4 +1,12 @@
-﻿using System;
+﻿
+
+
+
+
+
+
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -127,7 +135,7 @@ namespace Merlin
 
 		public static Spell[] GetSpells(this LocalPlayerCharacterView instance)
 		{
-			var internalSpells = instance.LocalPlayerCharacter.th();
+			var internalSpells = instance.LocalPlayerCharacter.te();
 			var spells = new Spell[internalSpells.Length];
 
 			for (int i = 0; i < spells.Length; i++)
@@ -161,17 +169,17 @@ namespace Merlin
 
 		public static float GetHealth(this LocalPlayerCharacterView instance)
 		{
-			return instance.LocalPlayerCharacter.v5().r();
+			return instance.LocalPlayerCharacter.v2().r();
 		}
 
 		public static float GetMaxHealth(this LocalPlayerCharacterView instance)
 		{
-			return instance.LocalPlayerCharacter.v5().l();
+			return instance.LocalPlayerCharacter.v2().l();
 		}
 
 		public static bool IsMounting(this LocalPlayerCharacterView instance)
 		{
-			if (instance.LocalPlayerCharacter.v9().f() != 21)
+			if (instance.LocalPlayerCharacter.v6().f() != 21)
 				return false;
 
 			return true;
@@ -179,7 +187,7 @@ namespace Merlin
 
 		public static bool IsCastingSpell(this LocalPlayerCharacterView instance)
 		{
-			if (instance.LocalPlayerCharacter.v9().f() != 4)
+			if (instance.LocalPlayerCharacter.v6().f() != 4)
 				return false;
 
 			return true;
@@ -189,7 +197,7 @@ namespace Merlin
 		{
 			var mounts = Client.Instance.GetEntities<MountObjectView>((m) =>
 			{
-				return m.MountObject.se();
+				return m.MountObject.sb();
 			});
 
 			mount = mounts.FirstOrDefault();
@@ -199,7 +207,7 @@ namespace Merlin
 
 		public static float GetMaxLoad(this LocalPlayerCharacterView instance)
 		{
-			return instance.LocalPlayerCharacter.wf();
+			return instance.LocalPlayerCharacter.wc();
 		}
 
 		public static float GetLoadPercent(this LocalPlayerCharacterView instance)

@@ -48,7 +48,7 @@ namespace Merlin.API
 
 		#region Methods
 
-		public float GetLandscapeHeight(ahl position)
+		public float GetLandscapeHeight(ajd position)
 		{
 			return _landscape.p(position);
 		}

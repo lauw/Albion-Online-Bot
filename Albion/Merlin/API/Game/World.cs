@@ -1,4 +1,12 @@
-﻿using System;
+﻿
+
+
+
+
+
+
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
@@ -8,7 +16,7 @@ using WorldMap;
 
 namespace Merlin.API
 {
-	/* Internal Type: ajb */
+	/* Internal Type: ak8 */
 	public class World
 	{
 		#region Static
@@ -17,7 +25,7 @@ namespace Merlin.API
 		{
 			get 
 			{ 
-				var internalWorld = ajb.a();
+				var internalWorld = ak8.a();
 
 				if (internalWorld != null)
 					return new World(internalWorld);
@@ -31,27 +39,27 @@ namespace Merlin.API
 
 		static World()
 		{
-			_getEntitiesCollection = typeof(ajb).GetMethod("an", BindingFlags.NonPublic | BindingFlags.Instance);
-			_getWorldmapClusters = typeof(Worldmap).GetField("b", BindingFlags.NonPublic | BindingFlags.Instance);
+			_getEntitiesCollection = typeof(ak8).GetMethod("ai", BindingFlags.NonPublic | BindingFlags.Instance);
+			_getWorldmapClusters = typeof(Worldmap).GetField("c", BindingFlags.NonPublic | BindingFlags.Instance);
 		}
 
 		#endregion
 
 		#region Fields
 
-		private ajb _internal;
+		private ak8 _internal;
 
 		#endregion
 
 		#region Properties and Events
 
-		public WorldmapCluster CurrentCluster => GetCluster(_internal.w());
+		public WorldmapCluster CurrentCluster => GetCluster(_internal.u());
 
 		#endregion
 
 		#region Constructors and Cleanup
 
-		protected World(ajb world)
+		protected World(ak8 world)
 		{
 			_internal = world;
 		}
@@ -60,9 +68,9 @@ namespace Merlin.API
 
 		#region Methods
 
-		public Dictionary<long, apd> GetEntities() 
+		public Dictionary<long, are> GetEntities() 
 		{
-			return _getEntitiesCollection.Invoke(_internal, new object[] { }) as Dictionary<long, apd>;
+			return _getEntitiesCollection.Invoke(_internal, new object[] { }) as Dictionary<long, are>;
 		}
 
 		public Dictionary<string, WorldmapCluster> GetClusters()
@@ -70,11 +78,11 @@ namespace Merlin.API
 			return _getWorldmapClusters.GetValue(GameGui.Instance.WorldMap) as Dictionary<string, WorldmapCluster>;
 		}
 
-		public WorldmapCluster GetCluster(aif info)
+		public WorldmapCluster GetCluster(akb info)
 		{
 			var clusters = GetClusters();
 
-			if (clusters.TryGetValue(info.ah(), out WorldmapCluster cluster))
+			if (clusters.TryGetValue(info.ak(), out WorldmapCluster cluster))
 				return cluster;
 
 			return default(WorldmapCluster);
