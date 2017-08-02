@@ -30,7 +30,7 @@ namespace Merlin.API
 
 		#region Fields
 
-		private readonly a3d _client;
+		private readonly a6i _client;
 
 		private readonly World _world;
 		private readonly Collision _collision;
@@ -63,7 +63,7 @@ namespace Merlin.API
 
 		#region Methods
 
-		public SimulationObjectView GetEntity(apd entity) => _client.<#= internalClient_getSimulationObjectViewByEntity.Name #>(entity);
+		public SimulationObjectView GetEntity(are entity) => _client.<#= internalClient_getSimulationObjectViewByEntity.Name #>(entity);
 
 		public SimulationObjectView GetEntity(long id)
 		{
