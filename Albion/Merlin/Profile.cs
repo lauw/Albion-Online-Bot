@@ -16,7 +16,7 @@ namespace Merlin
 	{
 		#region Static
 
-		public static TimeSpan UpdateDelay = TimeSpan.FromMilliseconds(100);
+		public static TimeSpan UpdateDelay = TimeSpan.FromSeconds(0.1d);
 
 		#endregion
 
@@ -48,20 +48,33 @@ namespace Merlin
 		/// </summary>
 		void OnEnable()
 		{
-			_client = Client.Instance;
-			_world = World.Instance;
-			_landscape = Landscape.Instance;
-			_localPlayerCharacterView = _client.LocalPlayerCharacter;
+		    _client = Client.Instance;
+		    _world = World.Instance;
+		    _landscape = Landscape.Instance;
+		    _localPlayerCharacterView = _client.LocalPlayerCharacter;
+		    _nextUpdate = DateTime.Now;
+        }
 
-			_nextUpdate = DateTime.Now;
 
-			OnStart();
-		}
+	    void Awake()
+	    {
+	    }
+        
 
-		/// <summary>
-		/// Called when this instance is disabled.
-		/// </summary>
-		void OnDisable()
+	    void Start()
+	    {
+            OnStart();
+
+        }
+
+	    void Stop()
+	    {
+	    }
+
+        /// <summary>
+        /// Called when this instance is disabled.
+        /// </summary>
+        void OnDisable()
 		{
 			OnStop();
 
@@ -73,18 +86,18 @@ namespace Merlin
 		/// </summary>
 		void Update()
 		{
-			if (DateTime.Now < _nextUpdate)
+            if (DateTime.Now < _nextUpdate)
 				return;
 
-			OnUpdate();
+           _nextUpdate = DateTime.Now + UpdateDelay;
 
-			_nextUpdate = DateTime.Now + UpdateDelay;
-		}
+            OnUpdate();
+        }
 
-		/// <summary>
-		/// Called when the GUI is rendered.
-		/// </summary>
-		void OnGUI()
+        /// <summary>
+        /// Called when the GUI is rendered.
+        /// </summary>
+        void OnGUI()
 		{
 		}
 

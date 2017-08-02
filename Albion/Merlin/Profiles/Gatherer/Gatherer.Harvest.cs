@@ -14,7 +14,7 @@ namespace Merlin.Profiles.Gatherer
 	{
 		#region Static
 
-		private static int _minimumHarvestableTier = 4;
+		private static int _minimumHarvestableTier = 2;
 
 		private ClusterPathingRequest _harvestPathingRequest;
 
@@ -153,7 +153,6 @@ namespace Merlin.Profiles.Gatherer
 
 				return;
 			}
-
 
 			if (_currentTarget is HarvestableObjectView resource)
 			{

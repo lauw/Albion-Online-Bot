@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using Merlin.API;
 using UnityEngine;
 
@@ -13,27 +14,25 @@ namespace Merlin
 {
     public class Core
     {
-	    private static GameObject _coreObject;
+        private const string LogFile = "Logs.txt";
+
+	    public static GameObject _coreObject;
 
 	    private static Profile _activeProfile;
 
 		public static LineRenderer LineRenderer { get; set; }
+        
 
 		public static void Load()
 		{
-            Client.Instance.LocalPlayerCharacter.CreateTextEffect("Testing");
-			//_coreObject = new GameObject();
-			////_coreObject.AddComponent<VersionView>();
-			//var gatherer = _coreObject.AddComponent<Gatherer>();
+            _coreObject = new GameObject();                             
+            var gatherer = _coreObject.AddComponent<Gatherer>();
+            UnityEngine.Object.DontDestroyOnLoad(_coreObject);
+        }
 
-			//UnityEngine.Object.DontDestroyOnLoad(_coreObject);
-
-			//Activate(gatherer);
-		}
-
-		public static void Unload()
+        public static void Unload()
 		{
-			if (_activeProfile != null)
+            if (_activeProfile != null)
 				_activeProfile.enabled = false;
 
 			_activeProfile = null;
@@ -42,10 +41,10 @@ namespace Merlin
 
 			_coreObject = null;
 		}
-
+        
 	    public static void Log(string message)
 	    {
-		    using (var stream = new FileStream($@"Merlin\Logs.txt", FileMode.Append, FileAccess.Write, FileShare.ReadWrite))
+		    using (var stream = new FileStream(LogFile, FileMode.Append, FileAccess.Write, FileShare.ReadWrite))
 		    using (var writer = new StreamWriter(stream))
 		    {
 			    writer.WriteLine($"[{DateTime.Now}] {message}");
@@ -54,7 +53,7 @@ namespace Merlin
 
 		public static void Log(Exception e)
 	    {
-		    using (var stream = new FileStream($@"Merlin\Logs.txt", FileMode.Append, FileAccess.Write, FileShare.ReadWrite))
+		    using (var stream = new FileStream(LogFile, FileMode.Append, FileAccess.Write, FileShare.ReadWrite))
 		    using (var writer = new StreamWriter(stream))
 		    {
 			    writer.WriteLine($"{DateTime.Now}: ===================================");
@@ -67,12 +66,12 @@ namespace Merlin
 
 	    public static void Activate(Profile profile)
 	    {
-		    if (_activeProfile != null)
+            if (_activeProfile != null)
 			    _activeProfile.enabled = false;
 
 		    _activeProfile = profile;
-		    _activeProfile.enabled = true;
-	    }
+            _activeProfile.enabled = true;
+        }
 
 	    public static void DeactivateAll()
 	    {

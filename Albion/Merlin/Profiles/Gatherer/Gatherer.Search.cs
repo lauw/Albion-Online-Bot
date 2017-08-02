@@ -33,23 +33,26 @@ namespace Merlin.Profiles.Gatherer
 
 		public void Search()
 		{
-			if (_localPlayerCharacterView.IsUnderAttack(out FightingObjectView attacker))
+		
+            if (_localPlayerCharacterView.IsUnderAttack(out FightingObjectView attacker))
 			{
-				_localPlayerCharacterView.CreateTextEffect("[Attacked]");
+			    Core.Log("[Attacked]");
 				_state.Fire(Trigger.EncounteredAttacker);
 				return;
 			}
 
 			if (_localPlayerCharacterView.GetLoadPercent() > CapacityForBanking)
 			{
-				_localPlayerCharacterView.CreateTextEffect("[Overweight]");
+                Core.Log("Overweight");
 				_state.Fire(Trigger.Overweight);
 				return;
 			}
 
 			if (_currentTarget != null)
 			{
-				Blacklist(_currentTarget, TimeSpan.FromMinutes(5.0f));
+			    Core.Log("[Blacklisting target]");
+
+                Blacklist(_currentTarget, TimeSpan.FromMinutes(0.5f));
 
 				_currentTarget = null;
 				_harvestPathingRequest = null;
@@ -59,27 +62,29 @@ namespace Merlin.Profiles.Gatherer
 
 			if (IdentifiedTarget(out SimulationObjectView target))
 			{
-				_localPlayerCharacterView.CreateTextEffect("[Searching]");
+			    Core.Log("[Checking Target]");
 				_currentTarget = target;
 			}
 
 			if (_currentTarget != null && ValidateTarget(_currentTarget))
 			{
-				_localPlayerCharacterView.CreateTextEffect("[Identified]");
+			    Core.Log("[Identified]");
 				_state.Fire(Trigger.DiscoveredResource);
 				return;
 			}
+        }
 
-		}
-
-		public bool IdentifiedTarget(out SimulationObjectView target)
+        public bool IdentifiedTarget(out SimulationObjectView target)
 		{
 			var resources = _client.GetEntities<HarvestableObjectView>(ValidateHarvestable);
 			var hostiles = _client.GetEntities<MobView>(ValidateMob);
 
 			var views = new List<SimulationObjectView>();
 
-			foreach (var r in resources) views.Add(r);
+		    foreach (var r in resources)
+		    {
+		        views.Add(r);
+		    }
 			//foreach (var h in hostiles) views.Add(h);
 
 			target = views.OrderBy((view) =>
@@ -88,10 +93,10 @@ namespace Merlin.Profiles.Gatherer
 				var resourcePosition = view.transform.position;
 
 				var score = (resourcePosition - playerPosition).sqrMagnitude;
-
-				if (view is HarvestableObjectView harvestable)
+                
+                if (view is HarvestableObjectView harvestable)
 				{
-					var rareState = harvestable.GetRareState();
+                    var rareState = harvestable.GetRareState();
 				
 					if (harvestable.GetTier() >= 3) score /= 2;
 					if (harvestable.GetCurrentCharges() == harvestable.GetMaxCharges()) score /= 2;
@@ -108,7 +113,10 @@ namespace Merlin.Profiles.Gatherer
 				return (int)score;
 			}).FirstOrDefault();
 
-			return (target != default(SimulationObjectView));
+            if (target != null)
+		        Core.Log($"Resource spotted: {target.name}");
+
+            return (target != default(SimulationObjectView));
 		}
 
 		public bool IsBlocked(Vector2 location)

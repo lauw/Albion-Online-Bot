@@ -38,7 +38,7 @@ namespace Merlin.Profiles.Gatherer
 
 		protected override void OnStart()
 		{
-			_blacklist = new Dictionary<SimulationObjectView, Blacklisted>();
+            _blacklist = new Dictionary<SimulationObjectView, Blacklisted>();
 
 			_state = new StateMachine<State, Trigger>(State.Search);
 			_state.Configure(State.Search)
@@ -59,7 +59,7 @@ namespace Merlin.Profiles.Gatherer
 
 		protected override void OnStop()
 		{
-			_state = null;
+            _state = null;
 
 			_blacklist.Clear();
 			_blacklist = null;
@@ -67,7 +67,7 @@ namespace Merlin.Profiles.Gatherer
 
 		protected override void OnUpdate()
 		{
-			if (_blacklist.Count > 0)
+            if (_blacklist.Count > 0)
 			{
 				var whitelist = new List<SimulationObjectView>();
 
@@ -81,13 +81,28 @@ namespace Merlin.Profiles.Gatherer
 					_blacklist.Remove(target);
 			}
 
-			switch (_state.State)
-			{
-				case State.Search:		Search();	 break;
-				case State.Harvest:		Harvest();	 break;
-				case State.Combat:		Fight();	 break;
-				case State.Bank:		Bank();      break;
-			}
+		    try
+		    {
+		        switch (_state.State)
+		        {
+		            case State.Search:
+		                Search();
+		                break;
+		            case State.Harvest:
+		                Harvest();
+		                break;
+		            case State.Combat:
+		                Fight();
+		                break;
+		            case State.Bank:
+		                Bank();
+		                break;
+		        }
+		    }
+		    catch (Exception e)
+		    {
+		        Core.Log(e);
+		    }
 		}
 
 		private void Blacklist(SimulationObjectView target, TimeSpan duration)
@@ -100,28 +115,6 @@ namespace Merlin.Profiles.Gatherer
 		}
 
 		#endregion
-
-		private enum State
-		{
-			Search,
-
-			Harvest,
-			Combat,
-			Bank,
-		}
-
-		private enum Trigger
-		{
-			Restart,
-
-			DiscoveredResource,
-			DepletedResource,
-
-			Overweight,
-
-			EncounteredAttacker,
-			EliminatedAttacker,
-		}
 
 		private class Blacklisted
 		{
