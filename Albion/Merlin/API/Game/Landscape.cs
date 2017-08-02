@@ -1,4 +1,12 @@
-﻿using System;
+﻿
+
+
+
+
+
+
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -15,7 +23,7 @@ namespace Merlin.API
 		{
 			get
 			{
-				var internalLandscape = ajb.a().z();
+				var internalLandscape = ak8.a().x();
 
 				if (internalLandscape != null)
 					return new Landscape(internalLandscape);
@@ -32,13 +40,13 @@ namespace Merlin.API
 
 		#region Properties and Events
 
-		private amc _landscape;
+		private aog _landscape;
 
 		#endregion
 
 		#region Constructors and Cleanup
 
-		protected Landscape(amc landscape)
+		protected Landscape(aog landscape)
 		{
 			_landscape = landscape;
 		}
@@ -47,7 +55,7 @@ namespace Merlin.API
 
 		#region Methods
 
-		public float GetLandscapeHeight(ahl position)
+		public float GetLandscapeHeight(ajd position)
 		{
 			return _landscape.p(position);
 		}

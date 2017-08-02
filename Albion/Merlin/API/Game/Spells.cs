@@ -1,4 +1,12 @@
-﻿using System;
+﻿
+
+
+
+
+
+
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,7 +23,7 @@ namespace Merlin.API
 		#region Fields
 
 		private LocalPlayerCharacterView _owner;
-		private ab0 _internalSpell;
+		private adr _internalSpell;
 		private SpellSlotIndex _slot;
 
 		#endregion
@@ -50,7 +58,7 @@ namespace Merlin.API
 			}
 		}
 
-		public gs.SpellCategory Category
+		public gy.SpellCategory Category
 		{
 			get
 			{
@@ -59,11 +67,11 @@ namespace Merlin.API
 				if (configuration != null)
 					return configuration.Category;
 
-				return gs.SpellCategory.None;
+				return gy.SpellCategory.None;
 			}
 		}
 
-		public gs.SpellTarget Target
+		public gy.SpellTarget Target
 		{
 			get
 			{
@@ -72,7 +80,7 @@ namespace Merlin.API
 				if (configuration != null)
 					return configuration.Target;
 
-				return gs.SpellTarget.None;
+				return gy.SpellTarget.None;
 			}
 		}
 
@@ -95,7 +103,7 @@ namespace Merlin.API
 
 		#region Constructors and Cleanup
 		
-		public Spell(LocalPlayerCharacterView owner, ab0 internalSpell, SpellSlotIndex slot)
+		public Spell(LocalPlayerCharacterView owner, adr internalSpell, SpellSlotIndex slot)
 		{
 			_owner = owner;
 			_internalSpell = internalSpell;
@@ -117,7 +125,7 @@ namespace Merlin.API
 
 		#region Fields
 
-		private gt _internalConfiguration;
+		private gz _internalConfiguration;
 
 		#endregion
 
@@ -128,31 +136,31 @@ namespace Merlin.API
 			get
 			{
 				if (_internalConfiguration != null)
-					return _internalConfiguration.jp();
+					return _internalConfiguration.js();
 
 				return String.Empty;
 			}
 		}
 
-		public gs.SpellCategory Category
+		public gy.SpellCategory Category
+		{
+			get
+			{
+				if (_internalConfiguration != null)
+					return _internalConfiguration.d4;
+
+				return gy.SpellCategory.None;
+			}
+		}
+
+		public gy.SpellTarget Target
 		{
 			get
 			{
 				if (_internalConfiguration != null)
 					return _internalConfiguration.d1;
 
-				return gs.SpellCategory.None;
-			}
-		}
-
-		public gs.SpellTarget Target
-		{
-			get
-			{
-				if (_internalConfiguration != null)
-					return _internalConfiguration.dy;
-
-				return gs.SpellTarget.None;
+				return gy.SpellTarget.None;
 			}
 		}
 
@@ -161,7 +169,7 @@ namespace Merlin.API
 			get
 			{
 				if (_internalConfiguration != null)
-					return _internalConfiguration.ds;
+					return _internalConfiguration.dv;
 
 				return 0;
 			}
@@ -171,7 +179,7 @@ namespace Merlin.API
 
 		#region Constructors and Cleanup
 		
-		public SpellConfiguration(gt internalConfiguration)
+		public SpellConfiguration(gz internalConfiguration)
 		{
 			_internalConfiguration = internalConfiguration;
 		}
@@ -190,12 +198,12 @@ namespace Merlin.API
 			return spells.Where<Spell>(spell => spell.SpellSlot == spellSlot);
 		}
 
-		public static IEnumerable<Spell> Category(this IEnumerable<Spell> spells, gs.SpellCategory category)
+		public static IEnumerable<Spell> Category(this IEnumerable<Spell> spells, gy.SpellCategory category)
 		{
 			return spells.Where<Spell>(spell => spell.Category == category);
 		}
 
-		public static IEnumerable<Spell> Target(this IEnumerable<Spell> spells, gs.SpellTarget target)
+		public static IEnumerable<Spell> Target(this IEnumerable<Spell> spells, gy.SpellTarget target)
 		{
 			return spells.Where<Spell>(spell => spell.Target == target);
 		}

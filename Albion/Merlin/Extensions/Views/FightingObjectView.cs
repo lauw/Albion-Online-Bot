@@ -1,4 +1,12 @@
-﻿using System;
+﻿
+
+
+
+
+
+
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -15,12 +23,12 @@ namespace Merlin
 
 		static FightingObjectViewExtensions()
 		{
-			_getEventHandler = typeof(ap2).GetMethod("xm");
+			_getEventHandler = typeof(ar9).GetMethod("xm");
 		}
 
 		public static FightingObjectView GetAttackTarget(this FightingObjectView instance)
 		{
-			var attackTargetId = instance.FightingObject.wb();
+			var attackTargetId = instance.FightingObject.v8();
 
 			if (attackTargetId > 0L)
 			{
@@ -35,10 +43,10 @@ namespace Merlin
 
 		public static string GetDisplayName(this FightingObjectView instance)
 		{
-			return instance.FightingObject.fx();
+			return instance.FightingObject.ir();
 		}
 
-		public static T GetEventHandler<T>(this FightingObjectView instance) where T : ap3
+		public static T GetEventHandler<T>(this FightingObjectView instance) where T : asa
 		{
 			return _getEventHandler.MakeGenericMethod(new Type[] { typeof(T) })
 									.Invoke(instance.FightingObject, new object[0]) as T;
@@ -46,7 +54,7 @@ namespace Merlin
 
 		public static bool IsReadyToCast(this FightingObjectView instance, SpellSlotIndex slot)
 		{
-			var eventHandler = new CastSpellEventHandler(instance.GetEventHandler<aso>());
+			var eventHandler = new CastSpellEventHandler(instance.GetEventHandler<auy>());
 
 			if (eventHandler != null && eventHandler.IsReady((byte)slot))
 				return true;
@@ -56,7 +64,7 @@ namespace Merlin
 
 		public static float GetLoad(this LocalPlayerCharacterView instance)
 		{
-			return instance.LocalPlayerCharacter.ua();
+			return instance.LocalPlayerCharacter.t8();
 		}
 	}
 }

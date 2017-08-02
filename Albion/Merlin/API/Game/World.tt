@@ -32,8 +32,8 @@ namespace Merlin.API
 
 		static World()
 		{
-			_getEntitiesCollection = typeof(<#= internalWorldType.FullName #>).GetMethod("an", BindingFlags.NonPublic | BindingFlags.Instance);
-			_getWorldmapClusters = typeof(Worldmap).GetField("b", BindingFlags.NonPublic | BindingFlags.Instance);
+			_getEntitiesCollection = typeof(<#= internalWorldType.FullName #>).GetMethod("ai", BindingFlags.NonPublic | BindingFlags.Instance);
+			_getWorldmapClusters = typeof(Worldmap).GetField("c", BindingFlags.NonPublic | BindingFlags.Instance);
 		}
 
 		#endregion
@@ -46,7 +46,7 @@ namespace Merlin.API
 
 		#region Properties and Events
 
-		public WorldmapCluster CurrentCluster => GetCluster(_internal.w());
+		public WorldmapCluster CurrentCluster => GetCluster(_internal.u());
 
 		#endregion
 
@@ -75,7 +75,7 @@ namespace Merlin.API
 		{
 			var clusters = GetClusters();
 
-			if (clusters.TryGetValue(info.ah(), out WorldmapCluster cluster))
+			if (clusters.TryGetValue(info.ak(), out WorldmapCluster cluster))
 				return cluster;
 
 			return default(WorldmapCluster);

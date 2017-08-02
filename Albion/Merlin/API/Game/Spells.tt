@@ -51,7 +51,7 @@ namespace Merlin.API
 			}
 		}
 
-		public gs.SpellCategory Category
+		public gy.SpellCategory Category
 		{
 			get
 			{
@@ -60,11 +60,11 @@ namespace Merlin.API
 				if (configuration != null)
 					return configuration.Category;
 
-				return gs.SpellCategory.None;
+				return gy.SpellCategory.None;
 			}
 		}
 
-		public gs.SpellTarget Target
+		public gy.SpellTarget Target
 		{
 			get
 			{
@@ -73,7 +73,7 @@ namespace Merlin.API
 				if (configuration != null)
 					return configuration.Target;
 
-				return gs.SpellTarget.None;
+				return gy.SpellTarget.None;
 			}
 		}
 
@@ -129,31 +129,31 @@ namespace Merlin.API
 			get
 			{
 				if (_internalConfiguration != null)
-					return _internalConfiguration.jp();
+					return _internalConfiguration.js();
 
 				return String.Empty;
 			}
 		}
 
-		public gs.SpellCategory Category
+		public gy.SpellCategory Category
+		{
+			get
+			{
+				if (_internalConfiguration != null)
+					return _internalConfiguration.d4;
+
+				return gy.SpellCategory.None;
+			}
+		}
+
+		public gy.SpellTarget Target
 		{
 			get
 			{
 				if (_internalConfiguration != null)
 					return _internalConfiguration.d1;
 
-				return gs.SpellCategory.None;
-			}
-		}
-
-		public gs.SpellTarget Target
-		{
-			get
-			{
-				if (_internalConfiguration != null)
-					return _internalConfiguration.dy;
-
-				return gs.SpellTarget.None;
+				return gy.SpellTarget.None;
 			}
 		}
 
@@ -162,7 +162,7 @@ namespace Merlin.API
 			get
 			{
 				if (_internalConfiguration != null)
-					return _internalConfiguration.ds;
+					return _internalConfiguration.dv;
 
 				return 0;
 			}
@@ -191,12 +191,12 @@ namespace Merlin.API
 			return spells.Where<Spell>(spell => spell.SpellSlot == spellSlot);
 		}
 
-		public static IEnumerable<Spell> Category(this IEnumerable<Spell> spells, gs.SpellCategory category)
+		public static IEnumerable<Spell> Category(this IEnumerable<Spell> spells, gy.SpellCategory category)
 		{
 			return spells.Where<Spell>(spell => spell.Category == category);
 		}
 
-		public static IEnumerable<Spell> Target(this IEnumerable<Spell> spells, gs.SpellTarget target)
+		public static IEnumerable<Spell> Target(this IEnumerable<Spell> spells, gy.SpellTarget target)
 		{
 			return spells.Where<Spell>(spell => spell.Target == target);
 		}

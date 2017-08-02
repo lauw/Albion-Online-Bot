@@ -1,4 +1,12 @@
-﻿using System;
+﻿
+
+
+
+
+
+
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -7,7 +15,7 @@ using UnityEngine;
 
 namespace Merlin.API
 {
-	/* Internal Type: a3d */
+	/* Internal Type: a6i */
 	public class Client
 	{
 		#region Static
@@ -16,7 +24,7 @@ namespace Merlin.API
 		{
 			get
 			{
-				var internalClient = a3d.s();
+				var internalClient = a6i.s();
 
 				if (internalClient != null)
 					return new Client(internalClient);
@@ -29,7 +37,7 @@ namespace Merlin.API
 
 		#region Fields
 
-		private readonly a3d _client;
+		private readonly a6i _client;
 
 		private readonly World _world;
 		private readonly Collision _collision;
@@ -50,7 +58,7 @@ namespace Merlin.API
 
 		#region Constructors and Cleanup
 
-		protected Client(a3d client)
+		protected Client(a6i client)
 		{
 			_client = client;
 
@@ -62,7 +70,7 @@ namespace Merlin.API
 
 		#region Methods
 
-		public SimulationObjectView GetEntity(apd entity) => _client.a(entity);
+		public SimulationObjectView GetEntity(are entity) => _client.a(entity);
 
 		public SimulationObjectView GetEntity(long id)
 		{

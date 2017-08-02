@@ -13,7 +13,7 @@ namespace Merlin
 			var mountPosition = mount.transform.position;
 			var distance = (position - mountPosition).magnitude;
 
-			var desiredRange = mount.MountObject.sd().ef();
+			var desiredRange = mount.MountObject.sa().eg();
 
 			if (distance > desiredRange)
 				return false;

@@ -1,4 +1,12 @@
-﻿using System;
+﻿
+
+
+
+
+
+
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,31 +24,31 @@ namespace Merlin.API
 
 		#region Fields
 
-		private aif _cluster;
+		private akb _cluster;
 
 		#endregion
 
 		#region Properties and Events
 
-		public ClusterTypes ClusterType => _cluster.al().ClusterType;
-		public Biome Biome => _cluster.al().Biome;
-		public int Tier => _cluster.al().Tier;
-		public Continents Continent => _cluster.al().Continent;
-		public ClusterQualities ClusterQuality => _cluster.al().ClusterQuality;
-		public Faction Faction => _cluster.al().Faction;
+		public ClusterTypes ClusterType => _cluster.ao().ClusterType;
+		public Biome Biome => _cluster.ao().Biome;
+		public int Tier => _cluster.ao().Tier;
+		public Continents Continent => _cluster.ao().Continent;
+		public ClusterQualities ClusterQuality => _cluster.ao().ClusterQuality;
+		public Faction Faction => _cluster.ao().Faction;
 
-		public string Name => _cluster.ak();
-		public string InternalName => _cluster.ah();
+		public string Name => _cluster.an();
+		public string InternalName => _cluster.ak();
 
-		public it.PvpRules PvPRules => _cluster.an().ao();
+		public iy.PvpRules PvPRules => _cluster.aq().ap();
 
-		public aif Internal => _cluster;
+		public akb Internal => _cluster;
 
 		#endregion
 
 		#region Constructors and Cleanup
 		
-		public Cluster(aif cluster)
+		public Cluster(akb cluster)
 		{
 			_cluster = cluster;
 		}
@@ -53,7 +61,7 @@ namespace Merlin.API
 		{
 			var list = new List<ClusterExit>();
 
-			foreach (var exit in _cluster.ax())
+			foreach (var exit in _cluster.a1())
 				list.Add(new ClusterExit(exit));
 
 			return list;
@@ -70,7 +78,7 @@ namespace Merlin.API
 
 		#region Fields
 
-		private aig _clusterExit;
+		private akc _clusterExit;
 
 		#endregion
 
@@ -81,15 +89,15 @@ namespace Merlin.API
 
 		public bool IsRestricted => _clusterExit.u();
 
-		public aig.Kind Kind => _clusterExit.r();
+		public akc.Kind Kind => _clusterExit.r();
 
-		public aig Internal => _clusterExit;
+		public akc Internal => _clusterExit;
 
 		#endregion
 
 		#region Constructors and Cleanup
 		
-		public ClusterExit(aig clusterExit)
+		public ClusterExit(akc clusterExit)
 		{
 			_clusterExit = clusterExit;
 		}

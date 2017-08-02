@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using System.Reflection;
-
+using Merlin.API;
 using UnityEngine;
 
 using Merlin.Profiles.Gatherer;
@@ -21,13 +21,14 @@ namespace Merlin
 
 		public static void Load()
 		{
-			_coreObject = new GameObject();
-			//_coreObject.AddComponent<VersionView>();
-			var gatherer = _coreObject.AddComponent<Gatherer>();
+            Client.Instance.LocalPlayerCharacter.CreateTextEffect("Testing");
+			//_coreObject = new GameObject();
+			////_coreObject.AddComponent<VersionView>();
+			//var gatherer = _coreObject.AddComponent<Gatherer>();
 
-			UnityEngine.Object.DontDestroyOnLoad(_coreObject);
+			//UnityEngine.Object.DontDestroyOnLoad(_coreObject);
 
-			Activate(gatherer);
+			//Activate(gatherer);
 		}
 
 		public static void Unload()

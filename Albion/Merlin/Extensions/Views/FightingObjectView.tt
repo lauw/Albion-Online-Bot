@@ -36,7 +36,7 @@ namespace Merlin
 
 		public static string GetDisplayName(this FightingObjectView instance)
 		{
-			return instance.FightingObject.fx();
+			return instance.FightingObject.ir();
 		}
 
 		public static T GetEventHandler<T>(this FightingObjectView instance) where T : <#= internalEventHandlerType.Name #>
@@ -47,7 +47,7 @@ namespace Merlin
 
 		public static bool IsReadyToCast(this FightingObjectView instance, SpellSlotIndex slot)
 		{
-			var eventHandler = new CastSpellEventHandler(instance.GetEventHandler<aso>());
+			var eventHandler = new CastSpellEventHandler(instance.GetEventHandler<auy>());
 
 			if (eventHandler != null && eventHandler.IsReady((byte)slot))
 				return true;
@@ -57,7 +57,7 @@ namespace Merlin
 
 		public static float GetLoad(this LocalPlayerCharacterView instance)
 		{
-			return instance.LocalPlayerCharacter.ua();
+			return instance.LocalPlayerCharacter.t8();
 		}
 	}
 }

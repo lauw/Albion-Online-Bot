@@ -61,7 +61,7 @@ namespace Merlin.Profiles.Gatherer
 
 			if (attackTarget != null)
 			{
-				var selfBuffSpells = spells.Target(gs.SpellTarget.Self).Category(gs.SpellCategory.Buff);
+				var selfBuffSpells = spells.Target(gy.SpellTarget.Self).Category(gy.SpellCategory.Buff);
 				if (selfBuffSpells.Any() && !player.IsCastingSpell())
 				{
 					player.CreateTextEffect("[Casting Buff Spell]");
@@ -69,7 +69,7 @@ namespace Merlin.Profiles.Gatherer
 					return;
 				}
 
-				var selfDamageSpells = spells.Target(gs.SpellTarget.Self).Category(gs.SpellCategory.Damage);
+				var selfDamageSpells = spells.Target(gy.SpellTarget.Self).Category(gy.SpellCategory.Damage);
 				if (selfDamageSpells.Any() && !player.IsCastingSpell())
 				{
 					player.CreateTextEffect("[Casting Damage Spell]");
@@ -77,7 +77,7 @@ namespace Merlin.Profiles.Gatherer
 					return;
 				}
 
-				var groundCCSpells = spells.Target(gs.SpellTarget.Ground).Category(gs.SpellCategory.CrowdControl);
+				var groundCCSpells = spells.Target(gy.SpellTarget.Ground).Category(gy.SpellCategory.CrowdControl);
 				if (groundCCSpells.Any())
 				{
 					player.CreateTextEffect("[Casting Ground Spell]");
@@ -120,7 +120,7 @@ namespace Merlin.Profiles.Gatherer
 
 			if (player.GetHealth() < (player.GetMaxHealth() * 0.8f))
 			{
-				var healSpell = spells.Target(gs.SpellTarget.Self).Category(gs.SpellCategory.Heal);
+				var healSpell = spells.Target(gy.SpellTarget.Self).Category(gy.SpellCategory.Heal);
 
 				if (healSpell.Any())
 					player.CastOnSelf(healSpell.FirstOrDefault().SpellSlot);
